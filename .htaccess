@@ -1,0 +1,30 @@
+php_flag display_startup_errors on
+php_flag display_errors on
+php_flag html_errors on
+php_flag  log_errors on
+php_value memory_limit 500M
+
+RewriteEngine On
+RewriteRule ^content/([A-Za-z0-9-]+)/?$ index.php?content=$1 [NC]
+RewriteRule ^module/([A-Za-z0-9-]+)/?$ index.php?module=$1 [NC] 
+RewriteRule ^stardmin/([A-Za-z0-9-]+)/?$ /index.php?content=stardmin&section=$1 [NC] 
+RewriteRule ^poisk-po-catalogu/([\d\w\-\x7f-\xff\s]+)/?$ index.php?content=db_partsearch&search=$1 [NC] 
+RewriteRule ^poisk-po-catalogu-rashireniy/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([\d\w\-\x7f-\xff\s]+)/?$ index.php?content=db_partsearch_all&mark=$1&model=$2&manufacturer=$3&partname=$4 [NC] 
+RewriteRule ^([^/]+)/$ index.php?content=$1 [L]
+
+#<Files *.php>
+#order allow,deny
+#deny from all
+#</Files>
+<Files index.php>
+allow from all
+</Files>
+<Files *.sql>
+deny from all
+</Files>
+<Files set.php>
+allow from all
+</Files>
+
+AddType application/download .csv
+AddType application/download .txt

@@ -1,0 +1,1 @@
+<? setcookie ('stardmin_logon' ,''); ?>
